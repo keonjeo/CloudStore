@@ -299,7 +299,7 @@ func (conf *config) formatUrls(bucketName, objectKey string, params map[string]s
 		if conf.signature == "v4" {
 			canonicalizedUrl = "/"
 		} else {
-			canonicalizedUrl = "/" + urlHolder.host +"/"
+			canonicalizedUrl = "/" + urlHolder.host + "/"
 		}
 	} else {
 		if bucketName == "" {
@@ -311,7 +311,7 @@ func (conf *config) formatUrls(bucketName, objectKey string, params map[string]s
 				canonicalizedUrl = "/" + bucketName
 			} else {
 				requestUrl = fmt.Sprintf("%s://%s.%s:%d", urlHolder.scheme, bucketName, urlHolder.host, urlHolder.port)
-				if conf.signature == "v2" ||  conf.signature == "OBS"{
+				if conf.signature == "v2" || conf.signature == "OBS" {
 					canonicalizedUrl = "/" + bucketName + "/"
 				} else {
 					canonicalizedUrl = "/"

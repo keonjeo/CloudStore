@@ -57,7 +57,7 @@ func (obsClient ObsClient) doAuthTemporary(method, bucketName, objectKey string,
 			expires += date.Unix()
 			headers[HEADER_DATE_CAMEL] = []string{Int64ToString(expires)}
 
-			stringToSign := getV2StringToSign(method, canonicalizedUrl, headers,obsClient.conf.signature==SignatureObs)
+			stringToSign := getV2StringToSign(method, canonicalizedUrl, headers, obsClient.conf.signature == SignatureObs)
 			signature := UrlEncode(Base64Encode(HmacSha1([]byte(obsClient.conf.securityProvider.sk), []byte(stringToSign))), false)
 			if strings.Index(requestUrl, "?") < 0 {
 				requestUrl += "?"
@@ -76,7 +76,7 @@ func (obsClient ObsClient) doAuthTemporary(method, bucketName, objectKey string,
 func (obsClient ObsClient) doAuth(method, bucketName, objectKey string, params map[string]string,
 	headers map[string][]string, hostName string) (requestUrl string, err error) {
 	isObs := obsClient.conf.signature == SignatureObs
-	requestUrl, canonicalizedUrl := obsClient.conf.formatUrls(bucketName, objectKey, params, true )
+	requestUrl, canonicalizedUrl := obsClient.conf.formatUrls(bucketName, objectKey, params, true)
 	parsedRequestUrl, err := url.Parse(requestUrl)
 	if err != nil {
 		return "", err
@@ -105,7 +105,7 @@ func (obsClient ObsClient) doAuth(method, bucketName, objectKey string, params m
 			authorization = fmt.Sprintf("%s Credential=%s,SignedHeaders=%s,Signature=%s", V4_HASH_PREFIX, ret["Credential"], ret["SignedHeaders"], ret["Signature"])
 		} else {
 			ret := v2Auth(ak, sk, method, canonicalizedUrl, headers, isObs)
-			hashPrefix :=V2_HASH_PREFIX
+			hashPrefix := V2_HASH_PREFIX
 			if isObs {
 				hashPrefix = OBS_HASH_PREFIX
 			}
@@ -151,7 +151,7 @@ func encodeHeaders(headers map[string][]string) {
 	}
 }
 
-func attachHeaders(headers map[string][]string,isObs bool) string {
+func attachHeaders(headers map[string][]string, isObs bool) string {
 	length := len(headers)
 	_headers := make(map[string][]string, length)
 	keys := make([]string, 0, length)
@@ -161,7 +161,7 @@ func attachHeaders(headers map[string][]string,isObs bool) string {
 		if _key != "" {
 			prefixheader := HEADER_PREFIX
 			if isObs {
-				prefixheader =HEADER_PREFIX_OBS
+				prefixheader = HEADER_PREFIX_OBS
 			}
 			if _key == "content-md5" || _key == "content-type" || _key == "date" || strings.HasPrefix(_key, prefixheader) {
 				keys = append(keys, _key)
@@ -179,10 +179,10 @@ func attachHeaders(headers map[string][]string,isObs bool) string {
 		}
 	}
 	dateCamelHeader := PARAM_DATE_AMZ_CAMEL
-	dataHeader:=HEADER_DATE_AMZ
+	dataHeader := HEADER_DATE_AMZ
 	if isObs {
 		dateCamelHeader = PARAM_DATE_OBS_CAMEL
-		dataHeader =HEADER_DATE_OBS
+		dataHeader = HEADER_DATE_OBS
 	}
 	if _, ok := _headers[HEADER_DATE_CAMEL]; ok {
 		if _, ok := _headers[dataHeader]; ok {
@@ -230,13 +230,13 @@ func attachHeaders(headers map[string][]string,isObs bool) string {
 }
 
 func getV2StringToSign(method, canonicalizedUrl string, headers map[string][]string, isObs bool) string {
-	stringToSign := strings.Join([]string{method, "\n", attachHeaders(headers,isObs), "\n", canonicalizedUrl}, "")
+	stringToSign := strings.Join([]string{method, "\n", attachHeaders(headers, isObs), "\n", canonicalizedUrl}, "")
 	doLog(LEVEL_DEBUG, "The v2 auth stringToSign:\n%s", stringToSign)
 	return stringToSign
 }
 
 func v2Auth(ak, sk, method, canonicalizedUrl string, headers map[string][]string, isObs bool) map[string]string {
-	stringToSign := getV2StringToSign(method, canonicalizedUrl, headers,isObs)
+	stringToSign := getV2StringToSign(method, canonicalizedUrl, headers, isObs)
 	return map[string]string{"Signature": Base64Encode(HmacSha1([]byte(sk), []byte(stringToSign)))}
 }
 
@@ -355,7 +355,7 @@ func v4Auth(ak, sk, region, method, canonicalizedUrl, queryUrl string, headers m
 
 	credential, scope := getCredential(ak, region, shortDate)
 
-	payload:= EMPTY_CONTENT_SHA256
+	payload := EMPTY_CONTENT_SHA256
 	if val, ok := headers[HEADER_CONTENT_SHA256_AMZ]; ok {
 		payload = val[0]
 	}

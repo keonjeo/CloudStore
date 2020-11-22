@@ -31,11 +31,11 @@ func init() {
 func TestCOS(t *testing.T) {
 	// upload
 	t.Log("=====Upload=====", objectSVG, objectSVGGzip)
-	err = Cos.Upload(objectSVG, objectSVG,headerSVG)
+	err = Cos.Upload(objectSVG, objectSVG, headerSVG)
 	if err != nil {
 		t.Error(err)
 	}
-	err = Cos.Upload(objectSVGGzip, objectSVGGzip, headerGzip,headerSVG)
+	err = Cos.Upload(objectSVGGzip, objectSVGGzip, headerGzip, headerSVG)
 	if err != nil {
 		t.Error(err)
 	}

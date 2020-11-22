@@ -45,14 +45,14 @@ func (obsClient ObsClient) doActionWithoutBucket(action, method string, input IS
 }
 
 func (obsClient ObsClient) doActionWithBucketV2(action, method, bucketName string, input ISerializable, output IBaseModel) error {
-	if strings.TrimSpace(bucketName) == "" && !obsClient.conf.cname{
+	if strings.TrimSpace(bucketName) == "" && !obsClient.conf.cname {
 		return errors.New("Bucket is empty")
 	}
 	return obsClient.doAction(action, method, bucketName, "", input, output, false, true)
 }
 
 func (obsClient ObsClient) doActionWithBucket(action, method, bucketName string, input ISerializable, output IBaseModel) error {
-	if strings.TrimSpace(bucketName) == "" && !obsClient.conf.cname{
+	if strings.TrimSpace(bucketName) == "" && !obsClient.conf.cname {
 		return errors.New("Bucket is empty")
 	}
 	return obsClient.doAction(action, method, bucketName, "", input, output, true, true)
@@ -67,7 +67,7 @@ func (obsClient ObsClient) doActionWithBucketAndKeyUnRepeatable(action, method, 
 }
 
 func (obsClient ObsClient) _doActionWithBucketAndKey(action, method, bucketName, objectKey string, input ISerializable, output IBaseModel, repeatable bool) error {
-	if strings.TrimSpace(bucketName) == "" && !obsClient.conf.cname{
+	if strings.TrimSpace(bucketName) == "" && !obsClient.conf.cname {
 		return errors.New("Bucket is empty")
 	}
 	if strings.TrimSpace(objectKey) == "" {

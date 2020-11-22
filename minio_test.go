@@ -26,14 +26,15 @@ func init() {
 		panic(err)
 	}
 }
+
 func TestMinIO(t *testing.T) {
 	// upload
 	t.Log("=====Upload=====", objectSVG, objectSVGGzip)
-	err = Minio.Upload(objectSVG, objectSVG,headerSVG)
+	err = Minio.Upload(objectSVG, objectSVG, headerSVG)
 	if err != nil {
 		t.Error(err)
 	}
-	err = Minio.Upload(objectSVGGzip, objectSVGGzip, headerGzip,headerSVG)
+	err = Minio.Upload(objectSVGGzip, objectSVGGzip, headerGzip, headerSVG)
 	if err != nil {
 		t.Error(err)
 	}

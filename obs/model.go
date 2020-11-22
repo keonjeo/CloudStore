@@ -415,33 +415,33 @@ type GetBucketMetadataInput struct {
 }
 
 type SetObjectMetadataInput struct {
-	Bucket                     string
-	Key                        string
-	VersionId                  string
-	MetadataDirective          MetadataDirectiveType
-	CacheControl               string
-	ContentDisposition         string
-	ContentEncoding            string
-	ContentLanguage            string
-	ContentType                string
-	Expires                    string
-	WebsiteRedirectLocation    string
-	StorageClass               StorageClassType
-	Metadata                   map[string]string
+	Bucket                  string
+	Key                     string
+	VersionId               string
+	MetadataDirective       MetadataDirectiveType
+	CacheControl            string
+	ContentDisposition      string
+	ContentEncoding         string
+	ContentLanguage         string
+	ContentType             string
+	Expires                 string
+	WebsiteRedirectLocation string
+	StorageClass            StorageClassType
+	Metadata                map[string]string
 }
 
 type SetObjectMetadataOutput struct {
 	BaseModel
-	MetadataDirective          MetadataDirectiveType
-	CacheControl               string
-	ContentDisposition         string
-	ContentEncoding            string
-	ContentLanguage            string
-	ContentType                string
-	Expires                    string
-	WebsiteRedirectLocation    string
-	StorageClass               StorageClassType
-	Metadata                   map[string]string
+	MetadataDirective       MetadataDirectiveType
+	CacheControl            string
+	ContentDisposition      string
+	ContentEncoding         string
+	ContentLanguage         string
+	ContentType             string
+	Expires                 string
+	WebsiteRedirectLocation string
+	StorageClass            StorageClassType
+	Metadata                map[string]string
 }
 
 type GetBucketMetadataOutput struct {
@@ -456,7 +456,6 @@ type GetBucketMetadataOutput struct {
 	ExposeHeader  string
 	Epid          string
 }
-
 
 type BucketLoggingStatus struct {
 	XMLName      xml.Name `xml:"BucketLoggingStatus"`
@@ -763,11 +762,11 @@ type ObjectOperationInput struct {
 
 type PutObjectBasicInput struct {
 	ObjectOperationInput
-	ContentType         string
-	ContentMD5          string
-	ContentLength       int64
-	ContentEncoding     string
-	ContentDisposition  string
+	ContentType        string
+	ContentMD5         string
+	ContentLength      int64
+	ContentEncoding    string
+	ContentDisposition string
 }
 
 type PutObjectInput struct {

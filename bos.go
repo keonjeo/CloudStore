@@ -2,6 +2,7 @@ package CloudStore
 
 import (
 	"fmt"
+	"log"
 	"net/http"
 	"net/url"
 	"strings"
@@ -53,7 +54,9 @@ func (b *BOS) Upload(tmpFile, saveFile string, headers ...map[string]string) (er
 			case "content-type":
 				args.ContentType = v
 			case "content-encoding":
-				args.ContentEncoding = v
+				log.Println("+++++++++++++++++++  content-encoding  +++++++++++++++++++++")
+				//args.ContentEncoding = v
+				fallthrough
 			default:
 				args.UserMeta[k] = v
 			}

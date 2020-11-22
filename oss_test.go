@@ -30,12 +30,10 @@ func init() {
 	}
 }
 
-
-
 func TestOSS(t *testing.T) {
 	// upload
 	t.Log("=====Upload=====", objectSVG, objectSVGGzip)
-	err = O.Upload(objectSVG, objectSVG,headerSVG)
+	err = O.Upload(objectSVG, objectSVG, headerSVG)
 	if err != nil {
 		t.Error(err)
 	}

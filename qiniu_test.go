@@ -26,11 +26,10 @@ func init() {
 	}
 }
 
-
 func TestQINIU(t *testing.T) {
 	// upload
 	t.Log("=====Upload=====", objectSVG, objectSVGGzip)
-	err = Qiniu.Upload(objectSVG, objectSVG,headerSVG)
+	err = Qiniu.Upload(objectSVG, objectSVG, headerSVG)
 	if err != nil {
 		t.Error(err)
 	}
